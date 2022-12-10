@@ -14,24 +14,34 @@ std::vector<std::string> splitString(const std::string& s, char separator) {
     return segments;
 }
 
-std::vector<std::string> splitString(const std::string& s, const std::string& delimiter) {
+std::vector<std::string> splitString(const std::string& s, const std::string& separator) {
+    return splitString(s, separator, false);
+}
+
+std::vector<std::string> splitString(const std::string& s, const std::string& separator, bool allowEmpty) {
     std::string remaining = s;
     std::vector<std::string> segments {};
 
-    while(remaining.length() > 0) {
-        const unsigned long nextDelimiterPos = remaining.find(delimiter);
+    unsigned long nextSeparatorPos = remaining.find(separator);
 
-        if(nextDelimiterPos == std::string::npos) {
-            segments.push_back(remaining);
-            remaining = "";
-        } else {
-            segments.push_back(remaining.substr(0, nextDelimiterPos));
-            remaining = remaining.substr(nextDelimiterPos + delimiter.length());
+    while(nextSeparatorPos != std::string::npos) {
+        const auto segment = remaining.substr(0, nextSeparatorPos);
+
+        if(!segment.empty() || allowEmpty) {
+            segments.push_back(segment);
         }
+
+        remaining = remaining.substr(nextSeparatorPos + separator.length());
+        nextSeparatorPos = remaining.find(separator);
+    }
+
+    if(!remaining.empty() || allowEmpty) {
+        segments.push_back(remaining);
     }
 
     return segments;
 }
+
 std::string joinStrings(const std::vector<std::string>& strings, const std::string& separator) {
     std::string joined;
 
