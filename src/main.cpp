@@ -1,4 +1,4 @@
-#include "day01.h"
+#include "solutions/day01/day01.h"
 #include "io.h"
 #include <iostream>
 #include <vector>
