@@ -1,12 +1,12 @@
-#include "solutions/day01/day01.h"
 #include "io.h"
+#include "solutions/day01/day01.h"
 #include <iostream>
 #include <vector>
 
 typedef std::function<std::string(std::string)> solverFunction;
 
 int main(int argc, char* argv[]) {
-    const std::vector<std::vector<solverFunction>> days {{day01p1}};
+    const std::vector<std::vector<solverFunction>> days {{day01p1, day01p2}};
 
     int day = static_cast<int>(days.size());
     std::vector<solverFunction> daySolvers = days.back();
