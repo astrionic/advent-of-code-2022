@@ -1,7 +1,6 @@
 #include "day01.h"
 #include "../../stringUtils.h"
 #include "../../vectorUtils.h"
-#include <iostream>
 #include <numeric>
 
 std::vector<int> parseInput(const std::string& input) {
