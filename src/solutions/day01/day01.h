@@ -2,5 +2,9 @@
 
 #include <string>
 
-std::string day01p1(const std::string& input);
-std::string day01p2(const std::string& input);
+namespace day01 {
+
+std::string part1(const std::string& input);
+std::string part2(const std::string& input);
+
+} // namespace day01

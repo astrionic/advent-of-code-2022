@@ -1,7 +1,6 @@
 #include "day02.h"
 #include "../../stringUtils.h"
 #include "../../vectorUtils.h"
-#include <iostream>
 #include <numeric>
 #include <tuple>
 #include <vector>
@@ -36,7 +35,18 @@ std::string part1(const std::string& input) {
 }
 
 std::string part2(const std::string& input) {
-    return input;
+    const auto rounds = parseInput(input);
+
+    const auto scores = map<std::tuple<int, int>, int>(rounds, [](const std::tuple<int, int>& moves) {
+        const int opp = std::get<0>(moves);
+        const int outcome = std::get<1>(moves); // 1 := lose; 2 := draw; 3 := win
+        const int me = (opp + outcome) % 3 + 1;
+        const int score = (outcome - 1) * 3 + me;
+        return score;
+    });
+
+    const int totalScore = std::reduce(scores.begin(), scores.end());
+    return std::to_string(totalScore);
 }
 
 } // namespace day02

@@ -7,7 +7,7 @@
 typedef std::function<std::string(std::string)> solverFunction;
 
 int main(int argc, char* argv[]) {
-    const std::vector<std::vector<solverFunction>> days {{day01p1, day01p2}, {day02::part1}};
+    const std::vector<std::vector<solverFunction>> days {{day01::part1, day01::part2}, {day02::part1, day02::part2}};
 
     int day = static_cast<int>(days.size());
     std::vector<solverFunction> daySolvers = days.back();
